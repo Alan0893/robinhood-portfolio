@@ -1062,3 +1062,227 @@ body.night-mode .warning-text {
         font-size: 11px;
     }
 }
+
+/* ===== MODERN ROBINHOOD-INSPIRED REFRESH ===== */
+:root {
+    --rh-green: #00c805;
+    --rh-green-dark: #00a605;
+    --rh-red: #ff5000;
+    --rh-ink: #0b0f0d;
+    --rh-muted: #5d6b63;
+    --rh-line: #e6efe9;
+    --rh-surface: rgba(255, 255, 255, 0.9);
+    --rh-shadow: 0 24px 70px rgba(7, 25, 13, 0.08);
+    --rh-radius-lg: 28px;
+    --rh-radius-sm: 999px;
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(0, 200, 5, 0.18), transparent 34rem),
+        linear-gradient(180deg, #f7fbf8 0%, #ffffff 42%, #f8fbf9 100%);
+    color: var(--rh-ink);
+}
+
+.container {
+    max-width: 1280px;
+    padding: 18px;
+}
+
+.header {
+    margin: 0 0 20px;
+    padding: 18px 20px;
+    border: 1px solid rgba(0, 200, 5, 0.12);
+    border-radius: var(--rh-radius-lg);
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(22px);
+    box-shadow: var(--rh-shadow);
+    align-items: center;
+}
+
+.header h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.header-button,
+.header-icon-button,
+button,
+.calculate-btn {
+    border-radius: var(--rh-radius-sm);
+}
+
+.header-button,
+.header-icon-button {
+    border-color: transparent;
+    background: #f1f6f2;
+    color: var(--rh-ink);
+    font-weight: 700;
+}
+
+.header-button:hover,
+.header-icon-button:hover {
+    background: #e6f4e9;
+    border-color: rgba(0, 200, 5, 0.2);
+    transform: translateY(-1px);
+}
+
+.dashboard {
+    padding: 0;
+}
+
+.input-section,
+.results-card,
+.scenario-card,
+.warning-banner,
+.saved-scenarios-section,
+.selected-stock,
+.portfolio-impact {
+    border: 1px solid var(--rh-line);
+    border-radius: var(--rh-radius-lg);
+    background: var(--rh-surface);
+    box-shadow: var(--rh-shadow);
+}
+
+.input-section,
+.results-card,
+.saved-scenarios-section {
+    padding: 28px;
+}
+
+.input-section h2,
+.results-card h3,
+.saved-scenarios-section h2 {
+    letter-spacing: -0.03em;
+}
+
+input,
+.stock-search-input {
+    border-radius: 16px;
+    border-color: var(--rh-line);
+    background: rgba(255, 255, 255, 0.88);
+}
+
+input:focus,
+.stock-search-input:focus {
+    border-color: var(--rh-green);
+    box-shadow: 0 0 0 4px rgba(0, 200, 5, 0.12);
+}
+
+.stock-search-results {
+    border-color: var(--rh-line);
+    border-radius: 0 0 22px 22px;
+    box-shadow: var(--rh-shadow);
+}
+
+.search-result-item:hover {
+    background: #f8fdf9;
+}
+
+.calculate-btn,
+.remove-stock-btn,
+.delete-btn,
+.save-scenario-btn {
+    background: var(--rh-ink);
+    box-shadow: 0 14px 26px rgba(11, 15, 13, 0.16);
+}
+
+.calculate-btn:hover,
+.remove-stock-btn:hover,
+.delete-btn:hover,
+.save-scenario-btn:hover {
+    background: #18231c;
+}
+
+.calculate-btn:disabled {
+    background: #d8e3dc;
+    box-shadow: none;
+}
+
+.positive,
+.result-value.positive {
+    color: var(--rh-green);
+}
+
+.negative,
+.result-value.negative {
+    color: var(--rh-red);
+}
+
+.result-label,
+.impact-label,
+.scenario-date,
+.scenario-detail,
+.selected-stock-price,
+.warning-text {
+    color: var(--rh-muted);
+}
+
+body.night-mode {
+    background:
+        radial-gradient(circle at top left, rgba(0, 200, 5, 0.13), transparent 32rem),
+        linear-gradient(180deg, #080d0a 0%, #0d120f 100%);
+    color: #f2fff6;
+}
+
+body.night-mode .header,
+body.night-mode .input-section,
+body.night-mode .results-card,
+body.night-mode .scenario-card,
+body.night-mode .warning-banner,
+body.night-mode .saved-scenarios-section,
+body.night-mode .selected-stock,
+body.night-mode .portfolio-impact {
+    background: rgba(16, 24, 18, 0.9);
+    border-color: rgba(0, 200, 5, 0.16);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+body.night-mode .header-button,
+body.night-mode .header-icon-button {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.night-mode input,
+body.night-mode .stock-search-input,
+body.night-mode .stock-search-results {
+    background: rgba(13, 18, 15, 0.96);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.night-mode .header h1,
+body.night-mode .input-section h2,
+body.night-mode .results-card h3,
+body.night-mode .saved-scenarios-section h2,
+body.night-mode .result-value,
+body.night-mode .scenario-title,
+body.night-mode .selected-stock-symbol {
+    color: #f2fff6;
+}
+
+body.night-mode .result-label,
+body.night-mode .impact-label,
+body.night-mode .scenario-date,
+body.night-mode .scenario-detail,
+body.night-mode .selected-stock-price,
+body.night-mode .warning-text {
+    color: #9aaca0;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        border-radius: 22px;
+    }
+
+    .input-section,
+    .results-card,
+    .saved-scenarios-section {
+        padding: 20px;
+    }
+}

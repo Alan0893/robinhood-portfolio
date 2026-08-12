@@ -1911,3 +1911,425 @@ body.night-mode .holdings-table td strong {
         border-bottom-color: #333333;
     }
 }
+
+/* ===== MODERN ROBINHOOD-INSPIRED REFRESH ===== */
+:root {
+    --rh-green: #00c805;
+    --rh-green-dark: #00a605;
+    --rh-red: #ff5000;
+    --rh-ink: #0b0f0d;
+    --rh-muted: #5d6b63;
+    --rh-line: #e6efe9;
+    --rh-surface: rgba(255, 255, 255, 0.9);
+    --rh-surface-strong: #ffffff;
+    --rh-soft: #f5fbf7;
+    --rh-shadow: 0 24px 70px rgba(7, 25, 13, 0.08);
+    --rh-radius-lg: 28px;
+    --rh-radius-md: 18px;
+    --rh-radius-sm: 999px;
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(0, 200, 5, 0.18), transparent 34rem),
+        linear-gradient(180deg, #f7fbf8 0%, #ffffff 42%, #f8fbf9 100%);
+    color: var(--rh-ink);
+}
+
+.container {
+    max-width: 1280px;
+    padding: 18px;
+}
+
+.header {
+    margin: 0 0 20px;
+    padding: 18px 20px;
+    border: 1px solid rgba(0, 200, 5, 0.12);
+    border-radius: var(--rh-radius-lg);
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(22px);
+    box-shadow: var(--rh-shadow);
+    align-items: center;
+}
+
+h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+}
+
+.subtitle {
+    margin-top: 8px;
+    color: var(--rh-muted);
+    font-size: 15px;
+}
+
+#status {
+    width: fit-content;
+    padding: 7px 12px;
+    border-radius: var(--rh-radius-sm);
+    background: var(--rh-soft);
+    border: 1px solid var(--rh-line);
+}
+
+.status-indicator {
+    width: 9px;
+    height: 9px;
+}
+
+.status-disconnected {
+    background: var(--rh-red);
+}
+
+.header-right {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.header-button,
+.header-icon-button,
+.header-select,
+button {
+    border-radius: var(--rh-radius-sm);
+}
+
+.header-button,
+.header-icon-button,
+.header-select {
+    border-color: transparent;
+    background: #f1f6f2;
+    color: var(--rh-ink);
+    font-weight: 700;
+}
+
+.header-button:hover,
+.header-icon-button:hover,
+.header-select:hover {
+    background: #e6f4e9;
+    border-color: rgba(0, 200, 5, 0.2);
+    transform: translateY(-1px);
+}
+
+.header-button i,
+.export-option i,
+.positive,
+.percentage {
+    color: var(--rh-green);
+}
+
+button,
+.login-section button {
+    background: var(--rh-ink);
+    box-shadow: 0 14px 26px rgba(11, 15, 13, 0.16);
+}
+
+button:hover,
+.login-section button:hover {
+    background: #18231c;
+}
+
+.dashboard {
+    display: none;
+}
+
+.login-section {
+    max-width: 460px;
+    padding: 32px;
+    border: 1px solid var(--rh-line);
+    border-radius: var(--rh-radius-lg);
+    background: var(--rh-surface);
+    box-shadow: var(--rh-shadow);
+}
+
+.login-section h2,
+.holdings-table h2,
+.chart-title {
+    letter-spacing: -0.02em;
+}
+
+input,
+.stock-search-input {
+    border-radius: 16px;
+    border-color: var(--rh-line);
+    background: rgba(255, 255, 255, 0.88);
+}
+
+input:focus,
+.stock-search-input:focus {
+    border-color: var(--rh-green);
+    box-shadow: 0 0 0 4px rgba(0, 200, 5, 0.12);
+}
+
+.stats-grid,
+.charts-grid {
+    gap: 18px;
+    margin-bottom: 18px;
+    border: 0;
+}
+
+.stat-card,
+.chart-card,
+.holdings-table,
+.what-if-section {
+    border: 1px solid var(--rh-line);
+    border-radius: var(--rh-radius-lg);
+    background: var(--rh-surface);
+    box-shadow: var(--rh-shadow);
+}
+
+.stat-card,
+.chart-card {
+    border-right: 1px solid var(--rh-line);
+}
+
+.stat-card:last-child,
+.chart-card:last-child {
+    border-right: 1px solid var(--rh-line);
+}
+
+.stat-card {
+    padding: 26px;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::after {
+    content: '';
+    position: absolute;
+    inset: auto -30px -45px auto;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(0, 200, 5, 0.08);
+}
+
+.stat-value {
+    font-size: clamp(28px, 3vw, 38px);
+    letter-spacing: -0.04em;
+    color: var(--rh-ink);
+}
+
+.stat-label,
+#status-text,
+.table-company-name,
+.table-cost-basis,
+.portfolio-summary-label,
+.portfolio-summary-subvalue,
+.top-holding-name,
+.top-holding-percentage,
+.top-holding-day-label {
+    color: var(--rh-muted);
+}
+
+div[style*="margin-bottom: 24px; border-bottom: 1px solid #e5e5e5"] {
+    margin-bottom: 18px !important;
+    border: 1px solid var(--rh-line) !important;
+    border-radius: var(--rh-radius-lg);
+    background: var(--rh-surface);
+    box-shadow: var(--rh-shadow);
+    overflow: hidden;
+}
+
+div[style*="padding: 24px 0 0 0"] {
+    padding: 24px !important;
+}
+
+.portfolio-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    border-top: 0;
+}
+
+.portfolio-summary-item {
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid var(--rh-line);
+    border-radius: 18px;
+    background: linear-gradient(180deg, #ffffff 0%, #f7fbf8 100%);
+}
+
+.portfolio-summary-item:last-child {
+    border-right: 1px solid var(--rh-line);
+}
+
+.portfolio-summary-value {
+    color: var(--rh-ink);
+    letter-spacing: -0.03em;
+}
+
+.chart-card {
+    padding: 26px;
+    min-width: 0;
+}
+
+.chart-title {
+    font-size: 18px;
+}
+
+#top-holdings,
+#sector-breakdown {
+    border-top-color: var(--rh-line) !important;
+}
+
+.top-holding-item {
+    padding: 12px 0;
+}
+
+.holdings-table {
+    padding: 26px;
+}
+
+.holdings-table h2 {
+    border-bottom: 0;
+    padding-bottom: 0;
+    font-size: 22px;
+}
+
+#holdings-content {
+    border: 1px solid var(--rh-line);
+    border-radius: 22px;
+    background: #ffffff;
+}
+
+table {
+    overflow: hidden;
+}
+
+thead,
+th {
+    background: #f5fbf7;
+}
+
+th {
+    border-bottom: 1px solid var(--rh-line);
+    color: var(--rh-muted);
+}
+
+td {
+    border-bottom-color: var(--rh-line);
+}
+
+tbody tr:hover,
+tr:hover {
+    background: #f8fdf9;
+}
+
+.price-box {
+    border-radius: var(--rh-radius-sm);
+    padding: 6px 10px;
+}
+
+.price-box.up {
+    background: rgba(0, 200, 5, 0.12);
+    color: var(--rh-green-dark);
+}
+
+.price-box.down {
+    background: rgba(255, 80, 0, 0.12);
+    color: var(--rh-red);
+}
+
+.negative {
+    color: var(--rh-red);
+}
+
+.export-dropdown,
+.stock-search-results,
+.stock-modal-content {
+    border: 1px solid var(--rh-line);
+    border-radius: 22px;
+    box-shadow: var(--rh-shadow);
+}
+
+.stock-modal {
+    background: rgba(6, 12, 8, 0.52);
+    backdrop-filter: blur(8px);
+}
+
+.stock-info-item,
+.stock-stat-item,
+.scenario-card-portfolio {
+    border-radius: 18px;
+}
+
+body.night-mode {
+    background:
+        radial-gradient(circle at top left, rgba(0, 200, 5, 0.13), transparent 32rem),
+        linear-gradient(180deg, #080d0a 0%, #0d120f 100%);
+    color: #f2fff6;
+}
+
+body.night-mode .header,
+body.night-mode .login-section,
+body.night-mode .stat-card,
+body.night-mode .chart-card,
+body.night-mode .holdings-table,
+body.night-mode .what-if-section,
+body.night-mode div[style*="margin-bottom: 24px; border-bottom: 1px solid #e5e5e5"] {
+    background: rgba(16, 24, 18, 0.9);
+    border-color: rgba(0, 200, 5, 0.16);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+body.night-mode #status,
+body.night-mode .header-button,
+body.night-mode .header-icon-button {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.night-mode #holdings-content,
+body.night-mode table,
+body.night-mode thead,
+body.night-mode th,
+body.night-mode .portfolio-summary-item,
+body.night-mode .stock-modal-content,
+body.night-mode input,
+body.night-mode .stock-search-input {
+    background: rgba(13, 18, 15, 0.96);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.night-mode .stat-value,
+body.night-mode .portfolio-summary-value,
+body.night-mode h1,
+body.night-mode .chart-title,
+body.night-mode .holdings-table h2,
+body.night-mode .table-symbol {
+    color: #f2fff6 !important;
+}
+
+body.night-mode .stat-label,
+body.night-mode .subtitle,
+body.night-mode #status-text,
+body.night-mode .table-company-name,
+body.night-mode .table-cost-basis,
+body.night-mode .portfolio-summary-label,
+body.night-mode .portfolio-summary-subvalue {
+    color: #9aaca0 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        border-radius: 22px;
+    }
+
+    .dashboard {
+        padding: 0;
+    }
+
+    .stats-grid,
+    .charts-grid {
+        gap: 12px;
+    }
+
+    .portfolio-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
