@@ -11,9 +11,13 @@ import json
 import finnhub
 import csv
 from io import StringIO
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+# Fixed secret required on serverless (cold starts must not rotate the key)
+app.secret_key = os.environ.get('SECRET_KEY') or os.urandom(24)
 app.config['SESSION_PERMANENT'] = False
 app.config['PERMANENT_SESSION_LIFETIME'] = 86400  # 24 hours
 

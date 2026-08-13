@@ -103,12 +103,19 @@ def login(username=None, password=None, mfa_code=None):
         # robin_stocks handles device tokens internally
         # It will automatically use saved session if available
         # The store_session parameter saves the session for future logins
-        login_response = rh.login(
-            username=username,
-            password=password,
-            mfa_code=mfa_code,
-            store_session=True  # Save session for future logins
-        )
+        # On serverless (e.g. Vercel), only /tmp is writable; sessions still
+        # won't persist across cold starts, but login can succeed in-process.
+        pickle_path = os.environ.get('ROBINHOOD_PICKLE_PATH', '/tmp/.tokens' if os.environ.get('VERCEL') else '')
+        login_kwargs = {
+            'username': username,
+            'password': password,
+            'mfa_code': mfa_code,
+            'store_session': True,
+        }
+        if pickle_path:
+            login_kwargs['pickle_path'] = pickle_path
+
+        login_response = rh.login(**login_kwargs)
         
         if login_response:
             # If login_response is truthy, trust it
