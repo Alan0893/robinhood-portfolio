@@ -2159,6 +2159,16 @@ div[style*="padding: 24px 0 0 0"] {
     letter-spacing: -0.03em;
 }
 
+.portfolio-summary-value.positive,
+.portfolio-summary-subvalue.positive {
+    color: var(--rh-green);
+}
+
+.portfolio-summary-value.negative,
+.portfolio-summary-subvalue.negative {
+    color: var(--rh-red);
+}
+
 .chart-card {
     padding: 26px;
     min-width: 0;
@@ -2293,7 +2303,7 @@ body.night-mode .stock-search-input {
 }
 
 body.night-mode .stat-value,
-body.night-mode .portfolio-summary-value,
+body.night-mode .portfolio-summary-value:not(.positive):not(.negative),
 body.night-mode h1,
 body.night-mode .chart-title,
 body.night-mode .holdings-table h2,
@@ -2307,8 +2317,19 @@ body.night-mode #status-text,
 body.night-mode .table-company-name,
 body.night-mode .table-cost-basis,
 body.night-mode .portfolio-summary-label,
-body.night-mode .portfolio-summary-subvalue {
+body.night-mode .portfolio-summary-subvalue:not(.positive):not(.negative) {
     color: #9aaca0 !important;
+}
+
+/* Keep gain/loss colors visible in portfolio summary under night mode */
+body.night-mode .portfolio-summary-value.positive,
+body.night-mode .portfolio-summary-subvalue.positive {
+    color: #00C805 !important;
+}
+
+body.night-mode .portfolio-summary-value.negative,
+body.night-mode .portfolio-summary-subvalue.negative {
+    color: #ff6b6b !important;
 }
 
 @media screen and (max-width: 768px) {

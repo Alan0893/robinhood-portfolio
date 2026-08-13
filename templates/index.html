@@ -915,29 +915,26 @@
             const cashPercentage = data.total_value > 0 ? (data.cash / data.total_value) * 100 : 0;
             
             // Create horizontal stats layout
-            const isNightMode = document.body.classList.contains('night-mode');
-            const textColor = isNightMode ? '#e0e0e0' : '#000000';
-            const labelColor = isNightMode ? '#999999' : '#666666';
-            const borderColor = isNightMode ? '#333333' : '#e5e5e5';
-            
+            const posNeg = (n) => (n >= 0 ? 'positive' : 'negative');
+
             let summaryHTML = `
                 <div class="portfolio-summary-grid">
                     <div class="portfolio-summary-item">
                         <div class="portfolio-summary-label">Total Gain/Loss</div>
-                        <div class="portfolio-summary-value" style="color: ${totalGainLoss >= 0 ? '#00C805' : '#d32f2f'};">
+                        <div class="portfolio-summary-value ${posNeg(totalGainLoss)}">
                         ${totalGainLoss >= 0 ? '+' : ''}$${totalGainLoss.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </div>
-                        <div class="portfolio-summary-subvalue" style="color: ${totalGainLossPercent >= 0 ? '#00C805' : '#d32f2f'};">
+                        <div class="portfolio-summary-subvalue ${posNeg(totalGainLossPercent)}">
                         ${totalGainLossPercent >= 0 ? '+' : ''}${totalGainLossPercent.toFixed(2)}%
                     </div>
                 </div>
                 
                     <div class="portfolio-summary-item">
                         <div class="portfolio-summary-label">Today's Change</div>
-                        <div class="portfolio-summary-value" style="color: ${totalDayChange >= 0 ? '#00C805' : '#d32f2f'};">
+                        <div class="portfolio-summary-value ${posNeg(totalDayChange)}">
                         ${totalDayChange >= 0 ? '+' : ''}$${totalDayChange.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </div>
-                        <div class="portfolio-summary-subvalue" style="color: ${totalDayChangePercent >= 0 ? '#00C805' : '#d32f2f'};">
+                        <div class="portfolio-summary-subvalue ${posNeg(totalDayChangePercent)}">
                         ${totalDayChangePercent >= 0 ? '+' : ''}${totalDayChangePercent.toFixed(2)}%
                     </div>
                 </div>
@@ -945,13 +942,13 @@
                     <div class="portfolio-summary-item">
                         <div class="portfolio-summary-label">Top Gainer Today</div>
                         ${topGainerToday ? `
-                            <div class="portfolio-summary-value" style="font-size: inherit; color: ${textColor};">
+                            <div class="portfolio-summary-value" style="font-size: inherit;">
                                 ${topGainerToday.symbol}
                             </div>
-                            <div class="portfolio-summary-subvalue" style="color: ${topGainerToday.day_change_percent >= 0 ? '#00C805' : '#d32f2f'};">
+                            <div class="portfolio-summary-subvalue ${posNeg(topGainerToday.day_change_percent)}">
                                 ${topGainerToday.day_change_percent >= 0 ? '+' : ''}$${((topGainerToday.day_change || 0) * (topGainerToday.quantity || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </div>
-                            <div class="portfolio-summary-subvalue" style="color: ${topGainerToday.day_change_percent >= 0 ? '#00C805' : '#d32f2f'}; font-size: 0.85em; margin-top: 2px;">
+                            <div class="portfolio-summary-subvalue ${posNeg(topGainerToday.day_change_percent)}" style="font-size: 0.85em; margin-top: 2px;">
                                 ${topGainerToday.day_change_percent >= 0 ? '+' : ''}${topGainerToday.day_change_percent.toFixed(2)}%
                             </div>
                         ` : `
@@ -963,13 +960,13 @@
                     <div class="portfolio-summary-item">
                         <div class="portfolio-summary-label">Top Loser Today</div>
                         ${topLoserToday ? `
-                            <div class="portfolio-summary-value" style="font-size: inherit; color: ${textColor};">
+                            <div class="portfolio-summary-value" style="font-size: inherit;">
                                 ${topLoserToday.symbol}
                             </div>
-                            <div class="portfolio-summary-subvalue" style="color: ${topLoserToday.day_change_percent >= 0 ? '#00C805' : '#d32f2f'};">
+                            <div class="portfolio-summary-subvalue ${posNeg(topLoserToday.day_change_percent)}">
                                 ${topLoserToday.day_change_percent >= 0 ? '+' : ''}$${((topLoserToday.day_change || 0) * (topLoserToday.quantity || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </div>
-                            <div class="portfolio-summary-subvalue" style="color: ${topLoserToday.day_change_percent >= 0 ? '#00C805' : '#d32f2f'}; font-size: 0.85em; margin-top: 2px;">
+                            <div class="portfolio-summary-subvalue ${posNeg(topLoserToday.day_change_percent)}" style="font-size: 0.85em; margin-top: 2px;">
                                 ${topLoserToday.day_change_percent >= 0 ? '+' : ''}${topLoserToday.day_change_percent.toFixed(2)}%
                             </div>
                         ` : `
@@ -980,7 +977,7 @@
                     
                     <div class="portfolio-summary-item">
                         <div class="portfolio-summary-label">Avg Return</div>
-                        <div class="portfolio-summary-value" style="color: ${avgGainLossPercent >= 0 ? '#00C805' : '#d32f2f'};">
+                        <div class="portfolio-summary-value ${posNeg(avgGainLossPercent)}">
                             ${avgGainLossPercent >= 0 ? '+' : ''}${avgGainLossPercent.toFixed(2)}%
                         </div>
                         <div class="portfolio-summary-subvalue">
@@ -991,13 +988,13 @@
                     <div class="portfolio-summary-item">
                         <div class="portfolio-summary-label">Top Gainer</div>
                         ${largestGainer ? `
-                            <div class="portfolio-summary-value" style="font-size: inherit; color: ${textColor};">
+                            <div class="portfolio-summary-value" style="font-size: inherit;">
                                 ${largestGainer.symbol}
                             </div>
-                            <div class="portfolio-summary-subvalue" style="color: #00C805;">
+                            <div class="portfolio-summary-subvalue positive">
                                 +$${(largestGainer.gain_loss || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </div>
-                            <div class="portfolio-summary-subvalue" style="color: #00C805; font-size: 0.85em; margin-top: 2px;">
+                            <div class="portfolio-summary-subvalue positive" style="font-size: 0.85em; margin-top: 2px;">
                                 +${largestGainer.gain_loss_percent.toFixed(2)}%
                             </div>
                         ` : `
@@ -1009,13 +1006,13 @@
                     <div class="portfolio-summary-item">
                         <div class="portfolio-summary-label">Top Loser</div>
                         ${largestLoser ? `
-                            <div class="portfolio-summary-value" style="font-size: inherit; color: ${textColor};">
+                            <div class="portfolio-summary-value" style="font-size: inherit;">
                                 ${largestLoser.symbol}
                             </div>
-                            <div class="portfolio-summary-subvalue" style="color: #d32f2f;">
+                            <div class="portfolio-summary-subvalue negative">
                                 $${(largestLoser.gain_loss || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </div>
-                            <div class="portfolio-summary-subvalue" style="color: #d32f2f; font-size: 0.85em; margin-top: 2px;">
+                            <div class="portfolio-summary-subvalue negative" style="font-size: 0.85em; margin-top: 2px;">
                                 ${largestLoser.gain_loss_percent.toFixed(2)}%
                             </div>
                         ` : `
@@ -1027,7 +1024,7 @@
                     <div class="portfolio-summary-item">
                         <div class="portfolio-summary-label">Largest Position</div>
                         ${largestPosition ? `
-                            <div class="portfolio-summary-value" style="font-size: inherit; color: ${textColor};">
+                            <div class="portfolio-summary-value" style="font-size: inherit;">
                                 ${largestPosition.symbol}
                             </div>
                             <div class="portfolio-summary-subvalue">
@@ -1041,7 +1038,7 @@
                     
                     <div class="portfolio-summary-item">
                         <div class="portfolio-summary-label">Avg Position Size</div>
-                        <div class="portfolio-summary-value" style="color: ${textColor};">
+                        <div class="portfolio-summary-value">
                             $${avgPositionSize.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                         </div>
                         <div class="portfolio-summary-subvalue">
